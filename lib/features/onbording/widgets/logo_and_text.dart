@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:graduation_project/core/theming/styles.dart';
 import 'package:graduation_project/core/widgets/main_text.dart';
 
 import '../../../core/helper/spacing.dart';
