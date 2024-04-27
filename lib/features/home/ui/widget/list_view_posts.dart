@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/features/home/ui/widgets/post_items.dart';
+import 'package:graduation_project/features/home/ui/widget/post_items.dart';
 
 class ListViewPosts extends StatelessWidget {
   const ListViewPosts({super.key});

@@ -1,28 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/core/helper/spacing.dart';
-import 'package:graduation_project/core/theming/colors.dart';
-import 'package:graduation_project/features/home/ui/widgets/list_view_posts.dart';
-import 'package:graduation_project/features/home/ui/widgets/search_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorsManager.lessLightGray,
-      body: SafeArea(
-          child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-        child: Column(
+    return DefaultTabController(
+      initialIndex: 1,
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('TabBar Sample'),
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(Icons.cloud_outlined),
+              ),
+              Tab(
+                icon: Icon(Icons.beach_access_sharp),
+              ),
+              Tab(
+                icon: Icon(Icons.brightness_5_sharp),
+              ),
+            ],
+          ),
+        ),
+        body: const TabBarView(
           children: [
-            const SearchSection(),
-            verticalSpace(12),
-            const Expanded(child: ListViewPosts())
+            Center(
+              child: Text("It's cloudy here"),
+            ),
+            Center(
+              child: Text("It's rainy here"),
+            ),
+            Center(
+              child: Text("It's sunny here"),
+            ),
           ],
         ),
-      )),
+      ),
     );
   }
 }
