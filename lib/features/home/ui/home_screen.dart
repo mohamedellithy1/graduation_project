@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/features/home/ui/widget/list_view_posts.dart';
+import 'package:graduation_project/features/home/ui/widget/search_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -6,36 +9,50 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
-      length: 3,
+      initialIndex: 0,
+      length: 7,
       child: Scaffold(
+        backgroundColor: const Color(0XFFEBE8E8),
         appBar: AppBar(
-          title: const Text('TabBar Sample'),
-          bottom: const TabBar(
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          title: SizedBox(
+              height: 50.h, width: 300.w, child: const SearchSection()),
+          bottom: TabBar(
             tabs: [
               Tab(
-                icon: Icon(Icons.cloud_outlined),
+                child: Image.asset('asset/images/1.png'),
               ),
               Tab(
-                icon: Icon(Icons.beach_access_sharp),
+                child: Image.asset('asset/images/2.png'),
               ),
               Tab(
-                icon: Icon(Icons.brightness_5_sharp),
+                child: Image.asset('asset/images/3.png'),
+              ),
+              Tab(
+                child: Image.asset('asset/images/4.png'),
+              ),
+              Tab(
+                child: Image.asset('asset/images/5.png'),
+              ),
+              Tab(
+                child: Image.asset('asset/images/6.png'),
+              ),
+              Tab(
+                child: Image.asset('asset/images/7.png'),
               ),
             ],
           ),
         ),
         body: const TabBarView(
           children: [
-            Center(
-              child: Text("It's cloudy here"),
-            ),
-            Center(
-              child: Text("It's rainy here"),
-            ),
-            Center(
-              child: Text("It's sunny here"),
-            ),
+            ListViewPosts(),
+            ListViewPosts(),
+            ListViewPosts(),
+            ListViewPosts(),
+            ListViewPosts(),
+            ListViewPosts(),
+            ListViewPosts(),
           ],
         ),
       ),

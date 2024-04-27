@@ -9,7 +9,7 @@ class ListViewPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) => Padding(
-        padding: EdgeInsets.only(bottom: 10.h),
+        padding: EdgeInsets.only(bottom: 10.h, top: 10.h),
         child: const PostItems(),
       ),
       itemCount: 10,

@@ -8,19 +8,20 @@ class SearchSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppTextFromField(
-      hintText: 'Search',
-      validation: (value) {},
-      suffixIcon: IconButton(icon: const Icon(Icons.menu), onPressed: () {}),
-      prefixIcon: Padding(
-        padding: EdgeInsets.only(right: 10.w),
-        child: const CircleAvatar(
-          radius: 14,
-          child: Image(
-            image: AssetImage('asset/images/prosearch.png'),
-            fit: BoxFit.cover,
+        hintText: 'Search',
+        validation: (value) {},
+        suffixIcon: const Icon(Icons.search),
+        prefixIcon: Padding(
+          padding: EdgeInsets.only(right: 10.w, top: 10.h),
+          child: Container(
+            height: 25.0,
+            width: 25.0,
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: AssetImage("asset/images/pro.png"),
+                    fit: BoxFit.cover)),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
