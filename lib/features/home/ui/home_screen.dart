@@ -40,6 +40,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Tab(
                 child: Image.asset('asset/images/7.png'),
+
               ),
             ],
           ),
