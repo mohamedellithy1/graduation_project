@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helper/extensions.dart';
 import 'package:graduation_project/core/helper/spacing.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/theming/styles.dart';
 import 'package:graduation_project/core/widgets/app_text_button.dart';
+import 'package:graduation_project/features/home/data/models/get_home_data_model/get_home_data_response.dart';
+import 'package:graduation_project/features/home/logic/cubit/get_last_10_posts_cubit.dart';
 
 class PostItems extends StatelessWidget {
-  const PostItems({super.key});
+  const PostItems({super.key, required this.index});
+  final int index;
+  // final  index;
 
   @override
   Widget build(BuildContext context) {
+    final posts = context.read<GetLast10PostsCubit>().posts;
+    debugPrint('image >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${posts?.length}');
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
       decoration: BoxDecoration(
@@ -18,14 +25,14 @@ class PostItems extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Image(
-            image: const AssetImage('asset/images/postimage.png'),
+          Image.network(
+            ('${posts?[index].user?.photo?.url}'),
             height: 300.h,
             width: 400.w,
             fit: BoxFit.fill,
           ),
           verticalSpace(16),
-          const Text('جبت دا و مجاش على مقاسى لو حد محتاجهم'),
+          Text('${posts?[index].location}'),
           verticalSpace(20),
           const Text('الوصف'),
           verticalSpace(10),
@@ -36,14 +43,14 @@ class PostItems extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Text('منذ اسبوعين'),
+                  Text('${posts?[index].createdAt}'),
                   horizontalSpace(4),
                   const Icon(Icons.timer_outlined)
                 ],
               ),
               Row(
                 children: [
-                  const Text('سوهاج'),
+                  Text('${posts?[index].location}'),
                   horizontalSpace(4),
                   const Icon(Icons.location_city_outlined)
                 ],

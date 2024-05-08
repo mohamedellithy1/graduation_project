@@ -95,8 +95,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
 
   @override
   void dispose() {
-    passwordController.dispose();
-
+    passwordController.dispose(); 
     super.dispose();
   }
 }
