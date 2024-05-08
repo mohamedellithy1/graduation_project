@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/features/home/logic/cubit/get_last_10_posts_cubit.dart';
 import 'package:graduation_project/features/home/ui/widget/list_view_posts.dart';
 import 'package:graduation_project/features/home/ui/widget/search_section.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    context.read<GetLast10PostsCubit>().getLast10Posts();
+  
+    super.initState();
+  
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +55,6 @@ class HomeScreen extends StatelessWidget {
               ),
               Tab(
                 child: Image.asset('asset/images/7.png'),
-
               ),
             ],
           ),

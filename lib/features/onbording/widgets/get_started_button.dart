@@ -18,7 +18,7 @@ class GetStartedButton extends StatelessWidget {
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16)))),
         onPressed: () {
-          context.pushNamed(Routes.loginScreen);
+          context.pushNamed(Routes.homeScreen);
         },
         child: Text(
           'Get Started',

@@ -3,6 +3,8 @@ class ApiConstance {
       'https://final-project-1v65.onrender.com/api/v1/';
   static const String login = 'users/login';
   static const String signup = 'users/singup';
+    static const String postLast10 = 'posts/last-10-posts';
+
 }
 
 class ApiErrors {
