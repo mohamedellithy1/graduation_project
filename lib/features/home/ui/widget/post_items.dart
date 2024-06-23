@@ -32,11 +32,11 @@ class PostItems extends StatelessWidget {
             fit: BoxFit.fill,
           ),
           verticalSpace(16),
-          Text('${posts?[index].location}'),
+          Text('${posts?[index].content}'),
           verticalSpace(20),
           const Text('الوصف'),
           verticalSpace(10),
-          const Text('################################'),
+          Text('${posts?[index].content}'),
           verticalSpace(15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,12 +52,12 @@ class PostItems extends StatelessWidget {
                 children: [
                   Text('${posts?[index].location}'),
                   horizontalSpace(4),
-                  const Icon(Icons.location_city_outlined)
+                  const Icon(Icons.place)
                 ],
               ),
               Row(
                 children: [
-                  const Text('ملابس'),
+                  Text('${posts?[index].category}'),
                   horizontalSpace(4),
                   const Icon(Icons.category_outlined)
                 ],
@@ -68,15 +68,15 @@ class PostItems extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Text('Lein Amin'),
+              Text('${posts![index].user!.name}'),
               horizontalSpace(25),
               Container(
                 height: 60.0,
                 width: 60.0,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                        image: AssetImage("asset/images/pro.png"),
+                        image: NetworkImage('${posts[index].user?.photo!.url}'),
                         fit: BoxFit.cover)),
               ),
             ],

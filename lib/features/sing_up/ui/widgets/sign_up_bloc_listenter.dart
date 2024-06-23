@@ -58,9 +58,7 @@ class SignupBlocListener extends StatelessWidget {
             TextButton(
               child: const Text('Continue'),
               style: TextButton.styleFrom(
-                primary: Colors.white,
-                backgroundColor: Colors.blue,
-                onSurface: Colors.grey,
+                foregroundColor: Colors.white, backgroundColor: Colors.blue, disabledForegroundColor: Colors.grey.withOpacity(0.38),
               ),
               onPressed: () {
                 context.pushNamed(Routes.loginScreen);

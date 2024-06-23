@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/core/theming/colors.dart';
 import 'package:graduation_project/features/home/logic/cubit/get_last_10_posts_cubit.dart';
 import 'package:graduation_project/features/home/logic/cubit/get_last_10_posts_state.dart';
 import 'package:graduation_project/features/home/ui/widget/post_items.dart';
@@ -27,7 +28,18 @@ class ListViewPosts extends StatelessWidget {
                     child: PostItems(index: index),
                   ),
               itemCount: context.read<GetLast10PostsCubit>().posts?.length),
-          failuer: (error) => const SizedBox.shrink(),
+          failuer: (error) => Center(
+            child: InkWell(
+              onTap: () {
+                context.read<GetLast10PostsCubit>().getLast10Posts();
+              },
+              child: const Icon(
+                Icons.refresh,
+                color: ColorsManager.mainBlue,
+                size: 30,
+              ),
+            ),
+          ),
         );
       },
     );
