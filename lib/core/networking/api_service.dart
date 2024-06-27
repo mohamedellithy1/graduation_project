@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:graduation_project/core/networking/api_constance.dart';
+import 'package:graduation_project/features/home/data/models/get_home_data_model/get_home_data_paid_response.dart';
 import 'package:graduation_project/features/home/data/models/get_home_data_model/get_home_data_response.dart';
 import 'package:graduation_project/features/login/data/models/login_request_body.dart';
 import 'package:graduation_project/features/login/data/models/login_response.dart';
@@ -19,6 +20,9 @@ abstract class ApiService {
   @POST(ApiConstance.signup)
   Future<SignUpResponse> signup(@Body() SignUpRequestBody signUpRequestBody);
   
-  @GET(ApiConstance.postLast10)
-  Future<GetHomeDataResponse> getPostLast10();
+  @GET(ApiConstance.postLast10free)
+  Future<GetHomeDataResponse> getPostLast10free();
+  
+  @GET(ApiConstance.postLast10paid)
+  Future<GetHomeDataPaidResponse> getPostLast10paid();
 }

@@ -16,12 +16,18 @@ class AppTextFromField extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final TextAlign? textAlign;
+  final String? labelText;
+  final int? minLines;
+  final int? maxLines;
   final TextEditingController? controller;
   final Function(String?) validation;
   const AppTextFromField(
+
       {super.key,
       required this.hintText,
       required this.validation,
+      this.maxLines , 
+      this.minLines,
       this.controller,
       this.textAlign,
       this.prefixIcon,
@@ -30,6 +36,7 @@ class AppTextFromField extends StatelessWidget {
       this.hintStyle,
       this.focusedBorder,
       this.enabledBorder,
+      this.labelText,
       this.inputTextStyle,
       this.isObscureText,
       this.suffixIcon});
@@ -37,10 +44,13 @@ class AppTextFromField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      minLines: minLines,
+      maxLines: maxLines,
       keyboardType: textInputType,
       controller: controller,
       //textAlign: textAlign,
       decoration: InputDecoration(
+          labelText: labelText,
           isDense: true,
           contentPadding: contentPadding ??
               EdgeInsets.symmetric(
@@ -60,7 +70,7 @@ class AppTextFromField extends StatelessWidget {
           hintStyle: hintStyle ?? TextStyles.font14GrayRegular,
           hintText: hintText,
           suffixIcon: suffixIcon,
-          prefix: prefixIcon,
+          prefixIcon: prefixIcon,
           fillColor: ColorsManager.moreLightGray,
           filled: true),
       obscureText: isObscureText ?? false,

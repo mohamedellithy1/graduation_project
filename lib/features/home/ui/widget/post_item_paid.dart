@@ -8,16 +8,17 @@ import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/theming/styles.dart';
 import 'package:graduation_project/core/widgets/app_text_button.dart';
 import 'package:graduation_project/features/home/logic/cubit/get_last_10_posts_cubit.dart';
+import 'package:graduation_project/features/home/logic/cuibit_paid/get_last_10_posts_paid_cubit.dart';
 import 'package:graduation_project/features/home/ui/widget/full_image_view.dart';
 
-class PostItems extends StatelessWidget {
-  const PostItems({super.key, required this.indexx});
+class PostItemsPaid extends StatelessWidget {
+  const PostItemsPaid({super.key, required this.indexx});
   final int indexx;
   // final  index;
 
   @override
   Widget build(BuildContext context) {
-    final posts = context.read<GetLast10PostsCubit>().posts;
+    final posts = context.read<GetLast10PostsPaidCubit>().posts;
     debugPrint('image >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${posts?.length}');
 
     return Container(
@@ -63,7 +64,7 @@ class PostItems extends StatelessWidget {
           Text('${posts?[indexx].content}'),
           const Text('الوصف'),
           verticalSpace(10),
-          Text('${posts?[indexx].price ?? ''}'),
+          Text(' جنية ${posts?[indexx].price ?? ''}'),
           verticalSpace(15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

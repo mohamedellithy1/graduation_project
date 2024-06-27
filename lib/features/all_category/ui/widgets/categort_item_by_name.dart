@@ -8,17 +8,21 @@ import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/theming/styles.dart';
 import 'package:graduation_project/core/widgets/app_text_button.dart';
 import 'package:graduation_project/features/home/logic/cubit/get_last_10_posts_cubit.dart';
+import 'package:graduation_project/features/home/logic/cuibit_paid/get_last_10_posts_paid_cubit.dart';
 import 'package:graduation_project/features/home/ui/widget/full_image_view.dart';
 
-class PostItems extends StatelessWidget {
-  const PostItems({super.key, required this.indexx});
+class CategortItemByName extends StatelessWidget {
+  const CategortItemByName(
+      {super.key, required this.indexx, required this.categoryName});
   final int indexx;
+  final String categoryName;
   // final  index;
 
   @override
   Widget build(BuildContext context) {
-    final posts = context.read<GetLast10PostsCubit>().posts;
-    debugPrint('image >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${posts?.length}');
+    // final posts = context.read<GetLast10PostsPaidCubit>().posts;
+    // debugPrint('image >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${posts?.length}');
+    print(':>>>>>>>>>>>>>A>A>>>>>>>>>>>>>>A$categoryName');
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
@@ -31,60 +35,74 @@ class PostItems extends StatelessWidget {
             width: double.infinity,
             height: 200.h,
             child: Swiper(
-              itemCount: posts![indexx].images!.length,
+              itemCount: 1
+              // posts![indexx].images!.length
+              ,
               pagination: const SwiperPagination(),
               control: SwiperControl(),
               itemBuilder: (BuildContext context, int index) {
-                debugPrint(
-                    'image >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${posts[indexx].createdAt}');
+                // debugPrint(
+                //     'image >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${posts![indexx].createdAt}');
 
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FullScreenImageViewer(
-                            imageUrl: '${posts![indexx].images![index].url}'),
-                      ),
+                    onTap: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => FullScreenImageViewer(
+                      //         imageUrl: '${posts![indexx].images![index].url}'),
+                      //   ),
+                      // );
+                    },
+                    child: Image.asset('asset/images/pro.png')
+                    //  Image.network(
+                    //   '${posts![indexx].images![index].url}',
+                    // ),
                     );
-                  },
-                  child: Image.network(
-                    '${posts![indexx].images![index].url}',
-                  ),
-                );
               },
             ),
           ),
           verticalSpace(16),
-          Text('${posts?[indexx].content}'),
+          Text(categoryName
+              // '${posts?[indexx].content}'
+              ),
           verticalSpace(20),
           const Text('الوصف'),
           verticalSpace(10),
-          Text('${posts?[indexx].content}'),
+          Text('ladadad'
+              // '${posts?[indexx].content}'
+              ),
           const Text('الوصف'),
           verticalSpace(10),
-          Text('${posts?[indexx].price ?? ''}'),
+          Text(' جنية '),
+          // ${posts?[indexx].price ?? ''}
           verticalSpace(15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Text(TimeAgoFormatter(posts?[indexx].createdAt).toString()),
+                  Text('اسبوعين'
+                      // TimeAgoFormatter(posts?[indexx].createdAt).toString()
+                      ),
                   horizontalSpace(4),
                   const Icon(Icons.timer_outlined)
                 ],
               ),
               Row(
                 children: [
-                  Text('${posts?[indexx].location}'),
+                  Text('طنطا'
+                      // '${posts?[indexx].location}'
+                      ),
                   horizontalSpace(4),
                   const Icon(Icons.place)
                 ],
               ),
               Row(
                 children: [
-                  Text('${posts?[indexx].category}'),
+                  Text('مسمبسبسب'
+                      // '${posts?[indexx].category}'
+                      ),
                   horizontalSpace(4),
                   const Icon(Icons.category_outlined)
                 ],
@@ -95,16 +113,25 @@ class PostItems extends StatelessWidget {
           InkWell(
             onTap: () {
               context.pushNamed(Routes.details, arguments: {
-                'image': posts[indexx].user?.photo!.url.toString(),
-                'location': posts[indexx].location.toString(),
-                'nPhone': posts[indexx].user?.phone.toString(),
-                'name': posts[indexx].user?.name.toString()
+                'image': ''
+                //  posts![indexx].user?.photo!.url.toString() ?? ''
+                ,
+                'location': ''
+                //  posts[indexx].location.toString() ?? ''
+                ,
+                'nPhone': ''
+                // posts[indexx].user?.phone.toString() ?? ''
+                ,
+                'name': ''
+                // posts[indexx].user?.name.toString() ?? ''
               });
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text('${posts![indexx].user!.name}'),
+                Text('adddddd'
+                    // '${posts![indexx].user!.name}'
+                    ),
                 horizontalSpace(25),
                 Container(
                   height: 60.0,
@@ -112,8 +139,8 @@ class PostItems extends StatelessWidget {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image:
-                              NetworkImage('${posts[indexx].user?.photo!.url}'),
+                          image: AssetImage('asset/images/pro.png'),
+                          // NetworkImage('${posts![indexx].user?.photo!.url}'),
                           fit: BoxFit.cover)),
                 ),
               ],
@@ -125,10 +152,17 @@ class PostItems extends StatelessWidget {
               textStyle: TextStyles.font16whiteSemiBold,
               onPressed: () {
                 context.pushNamed(Routes.details, arguments: {
-                  'image': posts[indexx].user?.photo!.url.toString(),
-                  'location': posts[indexx].location.toString(),
-                  'nPhone': posts[indexx].user?.phone.toString(),
-                  'name': posts[indexx].user?.name.toString()
+                  'image': ''
+                  //  posts![indexx].user?.photo!.url.toString() ?? ""
+                  ,
+                  'location': ''
+                  //  posts[indexx].location.toString() ?? ""
+                  ,
+                  'nPhone': ''
+                  //  posts[indexx].user?.phone.toString()?? ""
+                  ,
+                  'name': ''
+                  // posts[indexx].user?.name.toString() ?? "",
                 });
               })
         ],

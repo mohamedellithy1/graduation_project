@@ -20,10 +20,10 @@ class TextStyles {
       fontSize: 36.sp,
       fontWeight: FontWeight.bold,
       color: ColorsManager.mainBlue);
-  static TextStyle font24WhiteBold = TextStyle(
+  static TextStyle font24BlackBold = TextStyle(
       fontSize: 24.sp,
       fontWeight: FontWeightHelper.semiBold,
-      color: Colors.white);
+      color: Colors.black);
   static TextStyle font20WhiteSimiBold = TextStyle(
       fontSize: 20.sp,
       fontWeight: FontWeightHelper.semiBold,

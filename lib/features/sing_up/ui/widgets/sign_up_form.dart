@@ -87,6 +87,8 @@ class _SignupFormState extends State<SignupForm> {
           ),
           verticalSpace(18),
           AppTextFromField(
+            maxLines: 1,
+            minLines: 1,
             controller: context.read<SignUpCubit>().passwordController,
             hintText: 'Password',
             isObscureText: isPasswordObscureText,
@@ -108,6 +110,8 @@ class _SignupFormState extends State<SignupForm> {
           ),
           verticalSpace(18),
           AppTextFromField(
+            maxLines: 1,
+            minLines: 1,
             controller: context.read<SignUpCubit>().confirmPasswordController,
             hintText: 'Password Confirmation',
             isObscureText: isPasswordConfirmationObscureText,

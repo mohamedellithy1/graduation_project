@@ -3,10 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helper/spacing.dart';
 import 'package:graduation_project/core/theming/colors.dart';
 import 'package:graduation_project/core/theming/styles.dart';
+import 'package:graduation_project/core/widgets/app_text_button.dart';
 
 class Detailscreen extends StatelessWidget {
-  const Detailscreen({super.key});
-
+  const Detailscreen(
+      {super.key, this.image, this.nPhone, this.location, this.name});
+  final String? image;
+  final String? nPhone;
+  final String? location;
+  final String? name;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,16 +26,15 @@ class Detailscreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text('Lein Amin', style: TextStyles.font20Black700Weight),
+              Text('$name', style: TextStyles.font20Black700Weight),
               horizontalSpace(25),
               Container(
                 height: 70.0,
                 width: 70.0,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                        image: AssetImage("asset/images/pro.png"),
-                        fit: BoxFit.cover)),
+                        image: NetworkImage(image!), fit: BoxFit.cover)),
               ),
             ],
           ),
@@ -46,35 +50,12 @@ class Detailscreen extends StatelessWidget {
               children: [
                 horizontalSpace(10),
                 Text(
-                  '01273960184',
+                  '$nPhone',
                   style: TextStyles.font15GraySemiBold,
                 ),
                 horizontalSpace(30),
                 Text(
                   ' :  رقم الهاتف',
-                  style: TextStyles.font15GraySemiBold,
-                )
-              ],
-            ),
-          ),
-          verticalSpace(25),
-          Container(
-            height: 70.h,
-            width: 350.w,
-            decoration: BoxDecoration(
-                color: ColorsManager.lighterGray,
-                borderRadius: BorderRadius.circular(15)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                horizontalSpace(10),
-                Text(
-                  'moh@gmail.com',
-                  style: TextStyles.font15GraySemiBold,
-                ),
-                horizontalSpace(30),
-                Text(
-                  ' :  البريد الإلكتروني',
                   style: TextStyles.font15GraySemiBold,
                 )
               ],
@@ -92,7 +73,7 @@ class Detailscreen extends StatelessWidget {
               children: [
                 horizontalSpace(10),
                 Text(
-                  'القاهره الف مسكن , جسر السويس',
+                  '$location',
                   maxLines: 4,
                   style: TextStyles.font15GraySemiBold,
                 ),
@@ -103,7 +84,14 @@ class Detailscreen extends StatelessWidget {
                 )
               ],
             ),
-          )
+          ),
+          verticalSpace(50),
+          AppTextButton(
+              buttonText: 'تـــــــم',
+              textStyle: TextStyles.font16withSemiBold,
+              onPressed: () {
+                Navigator.pop(context);
+              })
         ]),
       ),
     );

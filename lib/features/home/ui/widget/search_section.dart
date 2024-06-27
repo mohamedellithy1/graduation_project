@@ -7,21 +7,16 @@ class SearchSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppTextFromField(
-        hintText: 'Search',
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: AppTextFromField(
+        hintText: 'بحث',
         validation: (value) {},
-        suffixIcon: const Icon(Icons.search),
-        prefixIcon: Padding(
-          padding: EdgeInsets.only(right: 10.w, top: 10.h),
-          child: Container(
-            height: 25.0,
-            width: 25.0,
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                    image: AssetImage("asset/images/pro.png"),
-                    fit: BoxFit.cover)),
-          ),
-        ));
+        prefixIcon: const Icon(
+          Icons.search,
+          color: Colors.black,
+        ),
+      ),
+    );
   }
 }

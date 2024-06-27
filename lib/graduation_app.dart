@@ -20,7 +20,7 @@ class GraduationApp extends StatelessWidget {
           primaryColor: ColorsManager.mainBlue,
         ),
         onGenerateRoute: appRoute.generateRoute,
-        initialRoute: Routes.details,
+        initialRoute: Routes.homeScreen,
       ),
     );
   }

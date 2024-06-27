@@ -5,7 +5,9 @@ import 'package:graduation_project/core/routes/app_routes.dart';
 import 'package:graduation_project/graduation_app.dart';
 
 void main() async {
+  
   setUpGetIt();
+  
   await ScreenUtil.ensureScreenSize();
   runApp(GraduationApp(
     appRoute: AppRoute(),

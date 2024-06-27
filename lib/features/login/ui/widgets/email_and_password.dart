@@ -62,6 +62,8 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
               }),
           verticalSpace(20),
           AppTextFromField(
+            maxLines: 1,
+            minLines: 1,
             controller: context.read<LoginCubit>().passwordController,
             hintText: 'Password',
             suffixIcon: GestureDetector(
@@ -95,7 +97,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
 
   @override
   void dispose() {
-    passwordController.dispose(); 
+    passwordController.dispose();
     super.dispose();
   }
 }

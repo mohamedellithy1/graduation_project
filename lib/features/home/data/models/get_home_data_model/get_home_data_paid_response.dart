@@ -1,17 +1,17 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-part 'get_home_data_response.g.dart';
+part 'get_home_data_paid_response.g.dart';
 
 @JsonSerializable()
-class GetHomeDataResponse extends Equatable {
+class GetHomeDataPaidResponse extends Equatable {
   final String? status;
   final int? results;
   final Data? data;
 
-  const GetHomeDataResponse({this.status, this.results, this.data});
+  const GetHomeDataPaidResponse({this.status, this.results, this.data});
 
-  factory GetHomeDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetHomeDataResponseFromJson(json);
+  factory GetHomeDataPaidResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetHomeDataPaidResponseFromJson(json);
 
   @override
   List<Object?> get props => [status, data, results];

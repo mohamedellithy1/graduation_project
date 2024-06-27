@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_home_data_response.dart';
+part of 'get_home_data_paid_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetHomeDataResponse _$GetHomeDataResponseFromJson(Map<String, dynamic> json) =>
-    GetHomeDataResponse(
+GetHomeDataPaidResponse _$GetHomeDataPaidResponseFromJson(
+        Map<String, dynamic> json) =>
+    GetHomeDataPaidResponse(
       status: json['status'] as String?,
       results: json['results'] as int?,
       data: json['data'] == null
@@ -15,8 +16,8 @@ GetHomeDataResponse _$GetHomeDataResponseFromJson(Map<String, dynamic> json) =>
           : Data.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$GetHomeDataResponseToJson(
-        GetHomeDataResponse instance) =>
+Map<String, dynamic> _$GetHomeDataPaidResponseToJson(
+        GetHomeDataPaidResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
       'results': instance.results,
