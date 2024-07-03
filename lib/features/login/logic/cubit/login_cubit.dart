@@ -4,6 +4,7 @@ import 'package:graduation_project/features/login/data/models/login_request_body
 import 'package:graduation_project/features/login/data/repo/login_repo.dart';
 import 'package:graduation_project/features/login/logic/cubit/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepo _loginRepo;
@@ -11,9 +12,12 @@ class LoginCubit extends Cubit<LoginState> {
   final formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   // final AppPreferences pref;
 
   void emitLoginState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     emit(const LoginState.loading());
     final response = await _loginRepo.login(LoginRequestBody(
         email: emailController.text, password: passwordController.text));
@@ -21,9 +25,15 @@ class LoginCubit extends Cubit<LoginState> {
     response.when(success: (loginResponse) {
       final token = loginResponse.token;
       final userId = loginResponse.data!.user!.id;
+      prefs.setString('token', token!);
+      prefs.setString('userId', userId.toString());
+      prefs.setBool('isLogined', true);
+      print("token>>>>>>>>>>>>>>>>> ${prefs.getString('token')}");
+      print("token>>>>>>>>>>>>>>>>> ${prefs.getString('userId')}");
+      print("token>>>>>>>>>>>>>>>>> ${prefs.getBool('isLogined')}");
 
-      // pref.setToken(token!);
-      // pref.setUserId(userId!);
+      print(userId);
+
       emit(LoginState.success(loginResponse));
     }, failure: (error) {
       emit(LoginState.failure(message: error.apiErrorModel.message ?? ''));

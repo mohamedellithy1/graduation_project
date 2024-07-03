@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:graduation_project/core/networking/api_constance.dart';
+import 'package:graduation_project/features/all_category/data/model/get_category_response.dart';
 import 'package:graduation_project/features/home/data/models/get_home_data_model/get_home_data_paid_response.dart';
 import 'package:graduation_project/features/home/data/models/get_home_data_model/get_home_data_response.dart';
 import 'package:graduation_project/features/login/data/models/login_request_body.dart';
@@ -16,13 +17,19 @@ abstract class ApiService {
   @POST(ApiConstance.login)
   Future<LoginResponse> login(@Body() LoginRequestBody loginRequestBody);
 
-  
   @POST(ApiConstance.signup)
   Future<SignUpResponse> signup(@Body() SignUpRequestBody signUpRequestBody);
-  
+
   @GET(ApiConstance.postLast10free)
   Future<GetHomeDataResponse> getPostLast10free();
-  
+
   @GET(ApiConstance.postLast10paid)
   Future<GetHomeDataPaidResponse> getPostLast10paid();
+
+  @GET(ApiConstance.getCategory)
+  Future<GetCategoryResponse> getCategory({
+    @Header('Authorization') required String token,
+    @Header('Content-Type') String contentType = 'application/json',
+    @Path('category') required String category,
+  });
 }

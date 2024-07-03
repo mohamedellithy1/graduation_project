@@ -5,8 +5,8 @@ class ApiConstance {
   static const String signup = 'users/singup';
   static const String postLast10free = 'posts/free-posts';
   static const String postLast10paid = 'posts/paid-posts';
+  static const String getCategory = 'posts/category/أخري';
 }
-
 class ApiErrors {
   static const String badRequestError = "badRequestError";
   static const String noContent = "noContent";

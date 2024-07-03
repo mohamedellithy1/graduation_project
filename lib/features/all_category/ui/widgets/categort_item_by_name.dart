@@ -7,6 +7,7 @@ import 'package:graduation_project/core/helper/spacing.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/theming/styles.dart';
 import 'package:graduation_project/core/widgets/app_text_button.dart';
+import 'package:graduation_project/features/all_category/logic/get_category_cubit.dart';
 import 'package:graduation_project/features/home/logic/cubit/get_last_10_posts_cubit.dart';
 import 'package:graduation_project/features/home/logic/cuibit_paid/get_last_10_posts_paid_cubit.dart';
 import 'package:graduation_project/features/home/ui/widget/full_image_view.dart';
@@ -20,9 +21,10 @@ class CategortItemByName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final posts = context.read<GetLast10PostsPaidCubit>().posts;
+    // final posts = context.read<GetCategoryCubit>().categoryy;
     // debugPrint('image >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${posts?.length}');
     print(':>>>>>>>>>>>>>A>A>>>>>>>>>>>>>>A$categoryName');
+    // print(':>>>>>>>>>>>>>A>A>>>>>>>>>>>>>>A${posts![0]}');
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
