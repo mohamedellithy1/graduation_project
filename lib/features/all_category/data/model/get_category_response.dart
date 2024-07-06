@@ -19,7 +19,7 @@ class GetCategoryResponse extends Equatable {
 
 @JsonSerializable()
 class Data extends Equatable {
-  final List<Category>? category;
+  final List<posts>? category;
   const Data({this.category});
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
@@ -28,7 +28,7 @@ class Data extends Equatable {
 }
 
 @JsonSerializable()
-class Category extends Equatable {
+class posts extends Equatable {
   @JsonKey(name: "_id")
   final String? sId;
   final String? content;
@@ -40,7 +40,7 @@ class Category extends Equatable {
   final int? price;
   @JsonKey(name: "__v")
   final int? iv;
-  const Category({
+  const posts({
     this.sId,
     this.content,
     this.price,
@@ -51,7 +51,7 @@ class Category extends Equatable {
     this.images,
     this.iv,
   });
-  factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);
+  factory posts.fromJson(Map<String, dynamic> json) => _$postsFromJson(json);
 
   @override
   List<Object?> get props => [

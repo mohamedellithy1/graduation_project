@@ -39,5 +39,5 @@ Future<void> setUpGetIt() async {
       () => GetLast10PostPaidRepo(getIt()));
   getIt.registerFactory(() => GetLast10PostsPaidCubit(getIt()));
   getIt.registerLazySingleton<GetCategoryRepo>(() => GetCategoryRepo(getIt()));
-  getIt.registerFactory(() => GetCategoryCubit(getIt()));
+  getIt.registerFactory(() => GetCategoryCubitS(getIt()));
 }

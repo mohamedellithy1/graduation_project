@@ -1,30 +1,32 @@
+import 'dart:convert';
+
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helper/extensions.dart';
 import 'package:graduation_project/core/helper/spacing.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/theming/styles.dart';
 import 'package:graduation_project/core/widgets/app_text_button.dart';
+import 'package:graduation_project/features/all_category/data/model/get_category_response.dart';
 import 'package:graduation_project/features/all_category/logic/get_category_cubit.dart';
-import 'package:graduation_project/features/home/logic/cubit/get_last_10_posts_cubit.dart';
-import 'package:graduation_project/features/home/logic/cuibit_paid/get_last_10_posts_paid_cubit.dart';
+import 'package:graduation_project/features/home/data/models/get_home_data_model/get_home_data_paid_response.dart';
 import 'package:graduation_project/features/home/ui/widget/full_image_view.dart';
 
 class CategortItemByName extends StatelessWidget {
   const CategortItemByName(
-      {super.key, required this.indexx, required this.categoryName});
+      {super.key,
+      required this.indexx,
+      required this.categoryName,
+      required this.postsss});
   final int indexx;
   final String categoryName;
-  // final  index;
+  final List<Posts> postsss;
 
   @override
   Widget build(BuildContext context) {
-    // final posts = context.read<GetCategoryCubit>().categoryy;
-    // debugPrint('image >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${posts?.length}');
-    print(':>>>>>>>>>>>>>A>A>>>>>>>>>>>>>>A$categoryName');
-    // print(':>>>>>>>>>>>>>A>A>>>>>>>>>>>>>>A${posts![0]}');
+    // final postss = context.read<GetCategoryCubitS>().categoryy;
+    print(':>>>>>>>>>>>>>A>A>>>>>>>>>>>>>>A${postsss.toString()}');
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
@@ -37,74 +39,72 @@ class CategortItemByName extends StatelessWidget {
             width: double.infinity,
             height: 200.h,
             child: Swiper(
-              itemCount: 1
-              // posts![indexx].images!.length
-              ,
+              itemCount: postsss![indexx].images!.length,
               pagination: const SwiperPagination(),
               control: SwiperControl(),
               itemBuilder: (BuildContext context, int index) {
                 // debugPrint(
-                //     'image >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${posts![indexx].createdAt}');
+                //     'image >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${postss![indexx].createdAt}');
 
                 return GestureDetector(
-                    onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => FullScreenImageViewer(
-                      //         imageUrl: '${posts![indexx].images![index].url}'),
-                      //   ),
-                      // );
-                    },
-                    child: Image.asset('asset/images/pro.png')
-                    //  Image.network(
-                    //   '${posts![indexx].images![index].url}',
-                    // ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FullScreenImageViewer(
+                            imageUrl: '${postsss![indexx].images![index].url}'),
+                      ),
                     );
+                  },
+                  child:
+                      //  Image.asset('asset/images/pro.png')
+                      Image.network('${postsss![indexx].images![index].url}'),
+                );
               },
             ),
           ),
           verticalSpace(16),
-          Text(categoryName
-              // '${posts?[indexx].content}'
-              ),
+          Text(
+              // categoryName
+              '${postsss?[indexx].content}'),
           verticalSpace(20),
           const Text('الوصف'),
           verticalSpace(10),
-          Text('ladadad'
-              // '${posts?[indexx].content}'
-              ),
+          Text(
+              // 'ladadad'
+              '${postsss?[indexx].content}'),
           const Text('الوصف'),
           verticalSpace(10),
-          Text(' جنية '),
-          // ${posts?[indexx].price ?? ''}
+          postsss?[indexx].price == null
+              ? const SizedBox.shrink()
+              : Text('${postsss?[indexx].price ?? ''}'),
           verticalSpace(15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Text('اسبوعين'
-                      // TimeAgoFormatter(posts?[indexx].createdAt).toString()
-                      ),
+                  Text(
+                      // 'اسبوعين'
+                      TimeAgoFormatter(postsss?[indexx].createdAt).toString()),
                   horizontalSpace(4),
                   const Icon(Icons.timer_outlined)
                 ],
               ),
               Row(
                 children: [
-                  Text('طنطا'
-                      // '${posts?[indexx].location}'
-                      ),
+                  Text(
+                      // 'طنطا'
+                      '${postsss?[indexx].location}'),
                   horizontalSpace(4),
                   const Icon(Icons.place)
                 ],
               ),
               Row(
                 children: [
-                  Text('مسمبسبسب'
-                      // '${posts?[indexx].category}'
-                      ),
+                  Text(
+                      // 'مسمبسبسب'
+                      '${postsss?[indexx].category}'),
                   horizontalSpace(4),
                   const Icon(Icons.category_outlined)
                 ],
@@ -115,25 +115,18 @@ class CategortItemByName extends StatelessWidget {
           InkWell(
             onTap: () {
               context.pushNamed(Routes.details, arguments: {
-                'image': ''
-                //  posts![indexx].user?.photo!.url.toString() ?? ''
-                ,
-                'location': ''
-                //  posts[indexx].location.toString() ?? ''
-                ,
-                'nPhone': ''
-                // posts[indexx].user?.phone.toString() ?? ''
-                ,
-                'name': ''
-                // posts[indexx].user?.name.toString() ?? ''
+                'image': postsss![indexx].user?.photo!.url.toString() ?? '',
+                'location': postsss[indexx].location.toString() ?? '',
+                'nPhone': postsss[indexx].user?.phone.toString() ?? '',
+                'name': postsss[indexx].user?.name.toString() ?? ''
               });
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text('adddddd'
-                    // '${posts![indexx].user!.name}'
-                    ),
+                Text(
+                    // 'adddddd'
+                    '${postsss![indexx].user!.name}'),
                 horizontalSpace(25),
                 Container(
                   height: 60.0,
@@ -141,8 +134,10 @@ class CategortItemByName extends StatelessWidget {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: AssetImage('asset/images/pro.png'),
-                          // NetworkImage('${posts![indexx].user?.photo!.url}'),
+                          image:
+                              // AssetImage('asset/images/pro.png'),
+                              NetworkImage(
+                                  '${postsss![indexx].user?.photo!.url}'),
                           fit: BoxFit.cover)),
                 ),
               ],
@@ -154,17 +149,10 @@ class CategortItemByName extends StatelessWidget {
               textStyle: TextStyles.font16whiteSemiBold,
               onPressed: () {
                 context.pushNamed(Routes.details, arguments: {
-                  'image': ''
-                  //  posts![indexx].user?.photo!.url.toString() ?? ""
-                  ,
-                  'location': ''
-                  //  posts[indexx].location.toString() ?? ""
-                  ,
-                  'nPhone': ''
-                  //  posts[indexx].user?.phone.toString()?? ""
-                  ,
-                  'name': ''
-                  // posts[indexx].user?.name.toString() ?? "",
+                  'image': postsss![indexx].user?.photo!.url.toString() ?? "",
+                  'location': postsss[indexx].location.toString() ?? "",
+                  'nPhone': postsss[indexx].user?.phone.toString() ?? "",
+                  'name': postsss[indexx].user?.name.toString() ?? "",
                 });
               })
         ],

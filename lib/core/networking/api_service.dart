@@ -27,7 +27,7 @@ abstract class ApiService {
   Future<GetHomeDataPaidResponse> getPostLast10paid();
 
   @GET(ApiConstance.getCategory)
-  Future<GetCategoryResponse> getCategory({
+  Future<GetHomeDataPaidResponse> getCategory({
     @Header('Authorization') required String token,
     @Header('Content-Type') String contentType = 'application/json',
     @Path('category') required String category,

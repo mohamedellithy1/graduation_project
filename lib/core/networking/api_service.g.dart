@@ -131,7 +131,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<GetCategoryResponse> getCategory({
+  Future<GetHomeDataPaidResponse> getCategory({
     required String token,
     String contentType = 'application/json',
     required String category,
@@ -145,7 +145,7 @@ class _ApiService implements ApiService {
     _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetCategoryResponse>(Options(
+        _setStreamType<GetHomeDataPaidResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -153,7 +153,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'posts/category/أخري',
+              'posts/category/${category}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -162,7 +162,7 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = GetCategoryResponse.fromJson(_result.data!);
+    final value = GetHomeDataPaidResponse.fromJson(_result.data!);
     return value;
   }
 

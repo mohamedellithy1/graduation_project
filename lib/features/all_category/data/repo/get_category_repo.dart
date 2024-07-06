@@ -10,11 +10,11 @@ class GetCategoryRepo {
 
   GetCategoryRepo(this._apiService );
 
-  Future<ApiResult<GetCategoryResponse>> getCategory(
+  Future<ApiResult<GetHomeDataPaidResponse>> getCategory(
     {required String category , required String token }
   ) async {
     try {
-      final GetCategoryResponse response = await _apiService.getCategory(
+      final GetHomeDataPaidResponse response = await _apiService.getCategory(
          category: category.toString() ,
          token: 'Bearer $token'
       );

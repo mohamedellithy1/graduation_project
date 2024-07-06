@@ -5,7 +5,6 @@ import 'package:graduation_project/core/theming/colors.dart';
 import 'package:graduation_project/features/all_category/logic/get_category_cubit.dart';
 import 'package:graduation_project/features/all_category/logic/get_category_state.dart';
 import 'package:graduation_project/features/all_category/ui/widgets/categort_item_by_name.dart';
-import 'package:graduation_project/features/home/logic/cuibit_paid/get_last_10_posts_paid_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ListViewItemByCategory extends StatefulWidget {
@@ -20,7 +19,6 @@ class _ListViewPostsPaidState extends State<ListViewItemByCategory> {
   String? token;
   Future<String?> getToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print(prefs.getString('token'));
     return prefs.getString('token');
   }
 
@@ -32,11 +30,9 @@ class _ListViewPostsPaidState extends State<ListViewItemByCategory> {
   void initState() {
     fetchData().then((v) {
       context
-          .read<GetCategoryCubit>()
-          .getCategory(category: 'أخري', token: 'Bearer $token');
+          .read<GetCategoryCubitS>()
+          .getCategory(category: widget.categoryName!, token: 'Bearer $token');
     });
-    print('aaaaaaaaaaa${widget.categoryName.toString()}');
-    print('aaaaaaaaaaa${token}');
 
     super.initState();
   }
@@ -51,8 +47,10 @@ class _ListViewPostsPaidState extends State<ListViewItemByCategory> {
           scrolledUnderElevation: 0,
           centerTitle: true,
         ),
-        body: BlocBuilder<GetCategoryCubit, GetCategoryState>(
+        body: BlocBuilder<GetCategoryCubitS, GetCategoryState>(
           builder: (context, state) {
+            print(
+                'context.read<GetCategoryCubitS>().categoryy ${context.read<GetCategoryCubitS>().categoryy}');
             return state.when(
               initial: () => const SizedBox.shrink(),
               loading: () => const Column(
@@ -62,21 +60,28 @@ class _ListViewPostsPaidState extends State<ListViewItemByCategory> {
                   CircularProgressIndicator(),
                 ],
               ),
-              success: (r) => Expanded(
-                  child: ListView.builder(
-                      itemBuilder: (context, index) => Padding(
-                            padding: EdgeInsets.only(bottom: 10.h, top: 10.h),
-                            child: CategortItemByName(
-                              indexx: index,
-                              categoryName: widget.categoryName ?? '',
+              success: (r) {
+                final posts = context.read<GetCategoryCubitS>().categoryy;
+
+                return Expanded(
+                    child: ListView.builder(
+                        itemBuilder: (context, index) => Padding(
+                              padding: EdgeInsets.only(bottom: 10.h, top: 10.h),
+                              child: CategortItemByName(
+                                postsss: posts!,
+                                indexx: index,
+                                categoryName: widget.categoryName ?? '',
+                              ),
                             ),
-                          ),
-                      itemCount:
-                          context.read<GetCategoryCubit>().categoryy?.length)),
+                        itemCount: context
+                            .read<GetCategoryCubitS>()
+                            .categoryy
+                            ?.length));
+              },
               failuer: (error) => Center(
                 child: InkWell(
                   onTap: () {
-                    context.read<GetCategoryCubit>().getCategory(
+                    context.read<GetCategoryCubitS>().getCategory(
                           category: widget.categoryName!,
                           token: token!,
                         );

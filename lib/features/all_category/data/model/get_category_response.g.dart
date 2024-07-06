@@ -25,7 +25,7 @@ Map<String, dynamic> _$GetCategoryResponseToJson(
 
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
       category: (json['category'] as List<dynamic>?)
-          ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => posts.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -33,7 +33,7 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'category': instance.category,
     };
 
-Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
+posts _$postsFromJson(Map<String, dynamic> json) => posts(
       sId: json['_id'] as String?,
       content: json['content'] as String?,
       price: json['price'] as int?,
@@ -49,7 +49,7 @@ Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       iv: json['__v'] as int?,
     );
 
-Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
+Map<String, dynamic> _$postsToJson(posts instance) => <String, dynamic>{
       '_id': instance.sId,
       'content': instance.content,
       'createdAt': instance.createdAt,

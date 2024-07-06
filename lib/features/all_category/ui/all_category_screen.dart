@@ -13,17 +13,15 @@ class AllCategoryScreen extends StatelessWidget {
     'asset/images/3.png',
     'asset/images/4.png',
     'asset/images/5.png',
-    'asset/images/6.png',
     'asset/images/7.png',
   ];
   List<String> nameOfCategory = [
     'ملابس',
-    'اجهزه منزليه',
-    'شنط و احذيه',
-    'اثاث و ديكور',
-    'أدوات تعليمة',
-    'اكسسواوات',
-    'ترفيه و تسليه',
+    'أجهزة إلكترونية',
+    'أحذية',
+    'ديكور وأثاث',
+    'أدوات مدرسيه',
+    'أخري',
   ];
 
   @override

@@ -69,7 +69,7 @@ class AppRoute {
       case Routes.categoryList:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (context) => getIt<GetCategoryCubit>(),
+                  create: (context) => getIt<GetCategoryCubitS>(),
                   child: ListViewItemByCategory(
                     categoryName:
                         (argument as Map<String, Object?>)["categoryName"]

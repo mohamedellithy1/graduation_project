@@ -3,10 +3,12 @@ import 'package:graduation_project/features/all_category/data/model/get_category
 import 'package:graduation_project/features/all_category/data/repo/get_category_repo.dart';
 import 'package:graduation_project/features/all_category/logic/get_category_state.dart';
 
-class GetCategoryCubit extends Cubit<GetCategoryState<List<Category>>> {
+import '../../home/data/models/get_home_data_model/get_home_data_paid_response.dart';
+
+class GetCategoryCubitS extends Cubit<GetCategoryState<List<Posts>>> {
   final GetCategoryRepo _getCategoryRepo;
-  List<Category>? categoryy = [];
-  GetCategoryCubit(this._getCategoryRepo, {this.categoryy})
+  List<Posts>? categoryy = [];
+  GetCategoryCubitS(this._getCategoryRepo, {this.categoryy})
       : super(const GetCategoryState.initial());
 
   void getCategory({
@@ -21,10 +23,10 @@ class GetCategoryCubit extends Cubit<GetCategoryState<List<Category>>> {
     response.when(
       success: (result) {
         print(",,,,,,,,,,,,,,,,,,$result");
-        categoryy = result.data?.category;
+        categoryy = result.data?.posts;
         print(
             "length ?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>,,,,,,,,,,,,,,,,,,${category?.length}");
-        emit(GetCategoryState.success(result.data?.category ?? []));
+        emit(GetCategoryState.success(result.data?.posts ?? []));
       },
       failure: (error) {
         emit(GetCategoryState.failuer(
