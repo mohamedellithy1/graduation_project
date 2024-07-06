@@ -166,6 +166,64 @@ class _ApiService implements ApiService {
     return value;
   }
 
+  @override
+  Future<GetHomeDataPaidResponse> sendPost({
+    required String token,
+    String? content,
+    required String category,
+    required String location,
+    List<File>? images,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = FormData();
+    if (content != null) {
+      _data.fields.add(MapEntry(
+        'content',
+        content,
+      ));
+    }
+    _data.fields.add(MapEntry(
+      'category',
+      category,
+    ));
+    _data.fields.add(MapEntry(
+      'location',
+      location,
+    ));
+    if (images != null) {
+      _data.files.addAll(images.map((i) => MapEntry(
+          'images',
+          MultipartFile.fromFileSync(
+            i.path,
+            filename: i.path.split(Platform.pathSeparator).last,
+          ))));
+    }
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GetHomeDataPaidResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+            .compose(
+              _dio.options,
+              'posts/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = GetHomeDataPaidResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

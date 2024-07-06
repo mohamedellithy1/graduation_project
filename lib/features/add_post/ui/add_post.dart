@@ -70,7 +70,7 @@ class AddPost extends StatelessWidget {
                     ),
                   ],
                 ),
-                verticalSpace(20), // Add some vertical space between the rows
+                verticalSpace(20),
                 Row(
                   children: [
                     Image.asset(
@@ -87,7 +87,7 @@ class AddPost extends StatelessWidget {
                     ),
                   ],
                 ),
-                verticalSpace(20), // Add some vertical space between the rows
+                verticalSpace(20), 
                 SizedBox(
                   height: 200.h,
                   child: AppTextFromField(
@@ -97,11 +97,13 @@ class AddPost extends StatelessWidget {
                     validation: (v) {},
                   ),
                 ),
-                verticalSpace(20), // Add some vertical space between the rows
+                verticalSpace(20), 
                 AppTextButton(
                   buttonText: 'إضافة',
                   textStyle: TextStyles.font16whiteSMedium,
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<AddPost>()
+                  },
                 ),
               ],
             ),

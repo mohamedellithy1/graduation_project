@@ -6,6 +6,8 @@ class ApiConstance {
   static const String postLast10free = 'posts/free-posts';
   static const String postLast10paid = 'posts/paid-posts';
   static const String getCategory = 'posts/category/{category}';
+  static const String sendPost = 'posts/';
+
 }
 class ApiErrors {
   static const String badRequestError = "badRequestError";

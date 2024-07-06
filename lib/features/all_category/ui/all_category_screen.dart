@@ -29,7 +29,7 @@ class AllCategoryScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(),
         body: Column(children: [
-          UserInfo(),
+          const UserInfo(),
           verticalSpace(20),
           Expanded(
             child: ListView.builder(

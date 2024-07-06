@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/di/dependency_injection.dart';
 import 'package:graduation_project/core/routes/routes.dart';
+import 'package:graduation_project/features/add_post/logic/cubit/add_post_cubit.dart';
 import 'package:graduation_project/features/add_post/ui/add_post.dart';
 import 'package:graduation_project/features/all_category/logic/get_category_cubit.dart';
 import 'package:graduation_project/features/all_category/ui/all_category_screen.dart';
@@ -54,7 +55,11 @@ class AppRoute {
       case Routes.allCategory:
         return MaterialPageRoute(builder: (_) => AllCategoryScreen());
       case Routes.addPost:
-        return MaterialPageRoute(builder: (_) => const AddPost());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt<AddPostCubit>(),
+                  child: const AddPost(),
+                ));
 
       case Routes.details:
         return MaterialPageRoute(

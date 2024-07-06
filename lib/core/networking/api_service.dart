@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:graduation_project/core/networking/api_constance.dart';
 import 'package:graduation_project/features/all_category/data/model/get_category_response.dart';
@@ -31,5 +33,14 @@ abstract class ApiService {
     @Header('Authorization') required String token,
     @Header('Content-Type') String contentType = 'application/json',
     @Path('category') required String category,
+  });
+  @POST(ApiConstance.sendPost)
+  @MultiPart()
+  Future<GetHomeDataPaidResponse> sendPost({
+    @Header("Authorization") required String token,
+    @Part(name: "content") required String? content,
+    @Part(name: "category") required String category,
+    @Part(name: "location") required String location,
+    @Part(name: "images") required List<File>? images,
   });
 }
